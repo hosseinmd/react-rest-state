@@ -1,0 +1,20 @@
+{
+  "name": "react-rest-state",
+  "version": "1.0.0",
+  "description": "state managment",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hosseinmd/react-rest-state.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hosseinmd/react-rest-state/issues"
+  },
+  "homepage": "https://github.com/hosseinmd/react-rest-state#readme"
+}

@@ -23,9 +23,29 @@ init({
   name: "alli"
 });
 ...
-console.log(state.hello)
-...
-setState({ name: "mikel" })
+console.log(state.name)
+```
+
+## setState
+
+```javascript
+setState({ name: "mikel" });
+```
+
+or
+
+```javascript
+setState(prevState => {
+  return { name: prevState.name + " mikel" };
+});
+```
+
+callback
+
+```javascript
+setState({ name: "mikel" }, () => {
+  console.log(state.name);
+});
 ```
 
 ## connect
@@ -55,4 +75,23 @@ class app extends React.Component {
     this.disconnect();
   }
 }
+```
+
+callback
+
+```javascript
+connect(
+  this,
+  ["state1"],
+  callbackFunc
+);
+```
+
+connect function to states
+run function when states did update
+
+```javascript
+connect(() => {
+  console.log(state.name);
+}, ["state1"]);
 ```

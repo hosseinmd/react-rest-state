@@ -26,7 +26,7 @@ init({
 console.log(state.name)
 ```
 
-## setState
+### setState
 
 ```javascript
 setState({ name: "mikel" });
@@ -48,7 +48,7 @@ setState({ name: "mikel" }, () => {
 });
 ```
 
-## connect
+### connect
 
 ```javascript
 import { connect, state, setState } from "react-rest-state";

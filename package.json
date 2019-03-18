@@ -1,6 +1,6 @@
 {
   "name": "react-rest-state",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "state managment",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,28 @@
     "type": "git",
     "url": "git+https://github.com/hosseinmd/react-rest-state.git"
   },
-  "keywords": [],
+  "keywords": [
+    "easy",
+    "state",
+    "state-management",
+    "performance",
+    "react",
+    "react-native",
+    "react-redux",
+    "javascript",
+    "javascript-library",
+    "global-state",
+    "global-variables",
+    "setstate",
+    "connect",
+    "components",
+    "library",
+    "high-performance",
+    "best-practices",
+    "react-rest-state",
+    "hossein",
+    "mohammadi"
+  ],
   "author": "",
   "license": "ISC",
   "bugs": {

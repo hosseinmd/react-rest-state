@@ -34,7 +34,7 @@ function setState(partialState, callback) {
   let enqueueUpdate = [];
   for (const key in partialState) {
     if (partialState.hasOwnProperty(key)) {
-      for (const connection of connections[key]) {
+      for (const connection of connections[key] || []) {
         if (
           !enqueueUpdate.some(
             insertedConn => insertedConn.context == connection.context
@@ -49,6 +49,10 @@ function setState(partialState, callback) {
   }
 
   if (typeof callback === "function") {
+    if (enqueueUpdate.length < 1) {
+      callback();
+      return;
+    }
     let enqueueCallback = enqueueUpdate.length;
     for (const connection of enqueueUpdate) {
       connection.context.forceUpdate(() => {

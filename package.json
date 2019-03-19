@@ -1,6 +1,6 @@
 {
   "name": "react-rest-state",
-  "version": "1.0.3",
+  "version": "1.0.6",
   "description": "state managment",
   "main": "index.js",
   "scripts": {
@@ -37,5 +37,8 @@
   "bugs": {
     "url": "https://github.com/hosseinmd/react-rest-state/issues"
   },
-  "homepage": "https://github.com/hosseinmd/react-rest-state#readme"
+  "homepage": "https://github.com/hosseinmd/react-rest-state#readme",
+  "devDependencies": {
+    "clone": "^2.1.2"
+  }
 }

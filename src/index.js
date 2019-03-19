@@ -1,7 +1,7 @@
 "use strict";
 exports.__esModule = true;
 
-const clone = require("./clone");
+const clone = require("clone");
 const shallowEqual = require("./shallowEqual");
 const { state, connections, currentState } = require("./container");
 

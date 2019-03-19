@@ -1,4 +1,4 @@
-# reststate
+# react-rest-state
 
 ![alt text](https://raw.githubusercontent.com/hosseinmd/react-rest-state/master/react-rest-state.png)
 

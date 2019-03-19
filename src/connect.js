@@ -3,14 +3,13 @@
 const { connections } = require("./container");
 
 /**
- *
- * @param {*} context
- * @param {*} stateNames
- * @param {object} options
- * @param {boolean} options.pureConnect
- * @param {function} options.callback
- *
- *
+ * connect component or function to few state
+ * @param {Component|Function} context
+ * @param {Array<String>} stateNames
+ * @param {Object} options
+ * @param {Boolean} options.pureConnect
+ * @param {Function} options.callback
+ * @returns {Function} run this for disconnect
  */
 function connect(context, stateNames = [], options = {}) {
   if (!(typeof context == "object" || typeof context == "function"))
@@ -37,4 +36,4 @@ function connect(context, stateNames = [], options = {}) {
   };
 }
 
-module.exports = connect;
+exports.connect = connect;

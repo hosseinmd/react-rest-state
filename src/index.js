@@ -5,10 +5,14 @@ const clone = require("clone");
 const shallowEqual = require("./shallowEqual");
 const { state, connections, currentState } = require("./container");
 
-function init(stateObject) {
-  for (const key in stateObject) {
-    if (stateObject.hasOwnProperty(key)) {
-      currentState[key] = clone(stateObject[key]);
+/**
+ * define state
+ * @param {Object} initState
+ */
+function init(initState) {
+  for (const key in initState) {
+    if (initState.hasOwnProperty(key)) {
+      currentState[key] = initState[key];
       Object.defineProperty(state, key, {
         get: function get() {
           return currentState[key];
@@ -20,41 +24,45 @@ function init(stateObject) {
     }
   }
 }
-
+/**
+ * change state value and update connections
+ * @param {Object|Function} partialState
+ * @param {Function} callback
+ */
 function setState(partialState, callback) {
   if (typeof partialState === "function") {
-    partialState = partialState(currentState);
+    partialState = partialState(clone(currentState));
   }
 
   // Null and undefined are treated as no-ops.
-  if (partialState === null || partialState === undefined) {
-    return;
+  if (typeof partialState == "object") {
+    throw "state should be returned an object type";
   }
 
-  let enqueueUpdate = [];
+  let queueUpdate = [];
   for (const key in partialState) {
     if (partialState.hasOwnProperty(key)) {
       for (const connection of connections[key] || []) {
         if (
-          !enqueueUpdate.some(
+          !queueUpdate.some(
             insertedConn => insertedConn.context == connection.context
           ) &&
           (!connection.pureConnect ||
             !shallowEqual(partialState[key], currentState[key]))
         )
-          enqueueUpdate.push(connection);
+          queueUpdate.push(connection);
       }
       currentState[key] = partialState[key];
     }
   }
 
   if (typeof callback === "function") {
-    if (enqueueUpdate.length < 1) {
+    if (queueUpdate.length < 1) {
       callback();
       return;
     }
-    let enqueueCallback = enqueueUpdate.length;
-    for (const connection of enqueueUpdate) {
+    let enqueueCallback = queueUpdate.length;
+    for (const connection of queueUpdate) {
       connection.context.forceUpdate(() => {
         enqueueCallback--;
         enqueueCallback == 0 && callback();
@@ -62,7 +70,7 @@ function setState(partialState, callback) {
       });
     }
   } else {
-    for (const connection of enqueueUpdate) {
+    for (const connection of queueUpdate) {
       connection.context.forceUpdate(connection.callback);
     }
   }

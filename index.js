@@ -1,5 +1,5 @@
 "use strict";
-const connect = require("./src/connect");
+const { connect } = require("./src/connect");
 const { init, state, setState } = require("./src/index");
 module.exports = {
   __esModule: true,

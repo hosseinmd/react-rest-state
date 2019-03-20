@@ -1,6 +1,8 @@
 "use strict";
 const { connect } = require("./src/connect");
-const { init, state, setState } = require("./src/index");
+const { init, setState } = require("./src/index");
+const { state } = require("./src/container");
+
 module.exports = {
   __esModule: true,
   connect,

@@ -3,7 +3,7 @@ exports.__esModule = true;
 
 const clone = require("clone");
 const shallowEqual = require("./shallowEqual");
-const { state, connections, currentState } = require("./container");
+const { state, connections } = require("./container");
 
 /**
  * define state
@@ -12,15 +12,7 @@ const { state, connections, currentState } = require("./container");
 function init(initState) {
   for (const key in initState) {
     if (initState.hasOwnProperty(key)) {
-      currentState[key] = initState[key];
-      Object.defineProperty(state, key, {
-        get: function get() {
-          return currentState[key];
-        },
-        set: function set(value) {
-          currentState[key] = value;
-        }
-      });
+      state[key] = initState[key];
     }
   }
 }
@@ -31,11 +23,11 @@ function init(initState) {
  */
 function setState(partialState, callback) {
   if (typeof partialState === "function") {
-    partialState = partialState(clone(currentState));
+    partialState = partialState(clone(state));
   }
 
   // Null and undefined are treated as no-ops.
-  if (typeof partialState == "object") {
+  if (typeof partialState != "object") {
     throw "state should be returned an object type";
   }
 
@@ -48,11 +40,11 @@ function setState(partialState, callback) {
             insertedConn => insertedConn.context == connection.context
           ) &&
           (!connection.pureConnect ||
-            !shallowEqual(partialState[key], currentState[key]))
+            !shallowEqual(partialState[key], state[key]))
         )
           queueUpdate.push(connection);
       }
-      currentState[key] = partialState[key];
+      state[key] = partialState[key];
     }
   }
 
@@ -77,7 +69,6 @@ function setState(partialState, callback) {
 }
 
 module.exports = {
-  state,
   init,
   setState
 };

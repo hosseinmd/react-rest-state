@@ -1,6 +1,6 @@
 {
   "name": "react-rest-state",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "state managment",
   "main": "index.js",
   "scripts": {

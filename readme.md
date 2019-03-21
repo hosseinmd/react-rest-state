@@ -84,7 +84,7 @@ callback
 ```javascript
 connect(
   this,
-  ["state1"],
+  ["name"],
   callbackFunc
 );
 ```
@@ -95,5 +95,5 @@ run function when states did update
 ```javascript
 connect(() => {
   console.log(state.name);
-}, ["state1"]);
+}, ["name"]);
 ```

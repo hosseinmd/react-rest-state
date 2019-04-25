@@ -1,4 +1,4 @@
-const { init, state, setState, connect } = require("./index");
+const { init, state, setState, connect, forceUpdate } = require("./index");
 
 init({
   name: "hossein",
@@ -13,3 +13,5 @@ connect(
   ["name", "family"]
 );
 setState({ name: "jone", family: "jakson" });
+
+forceUpdate(["family"]);

@@ -62,3 +62,6 @@ typings/
 
 # os config
 .DS_Store
+
+# yarn
+yarn.lock

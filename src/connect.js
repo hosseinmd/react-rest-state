@@ -15,8 +15,15 @@ function connect(context, stateNames = [], options = {}) {
   if (!(typeof context == "object" || typeof context == "function"))
     throw "context should be React.component or function";
 
-  if (typeof context == "function") context = { forceUpdate: context };
-
+  if (typeof context == "function") {
+    let contextFunc = context;
+    context = {
+      forceUpdate: async function(callback) {
+        contextFunc();
+        callback && callback();
+      }
+    };
+  }
   for (const name of stateNames) {
     if (connections.hasOwnProperty(name)) {
       connections[name].push({ ...options, context });

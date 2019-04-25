@@ -19,7 +19,7 @@ npm i react-rest-state --save
 ## use
 
 ```javascript
-import { init, state, setState } from "react-rest-state";
+import { init, state, setState, forceUpdate } from "react-rest-state";
 ...
 init({
   name: "alli"
@@ -96,4 +96,10 @@ run function when states did update
 connect(() => {
   console.log(state.name);
 }, ["name"]);
+```
+
+### forceUpdate
+
+```javascript
+forceUpdate(["mikel"],callback);
 ```

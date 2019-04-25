@@ -1,6 +1,6 @@
 {
   "name": "react-rest-state",
-  "version": "1.0.10",
+  "version": "1.1.0",
   "description": "state managment",
   "main": "index.js",
   "scripts": {
@@ -39,6 +39,6 @@
   },
   "homepage": "https://github.com/hosseinmd/react-rest-state#readme",
   "peerDependencies": {
-    "clone": "^2.1.2"
+    "clone": "^2.1.*"
   }
 }

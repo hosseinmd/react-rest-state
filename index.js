@@ -1,6 +1,6 @@
 "use strict";
 const { connect } = require("./src/connect");
-const { init, setState } = require("./src/index");
+const { init, setState, forceUpdate } = require("./src/index");
 const { state } = require("./src/container");
 
 module.exports = {
@@ -8,5 +8,6 @@ module.exports = {
   connect,
   init,
   state,
+  forceUpdate,
   setState
 };

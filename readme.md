@@ -101,5 +101,17 @@ connect(() => {
 ### forceUpdate
 
 ```javascript
-forceUpdate(["mikel"],callback);
+forceUpdate(["mikel"], callback);
+```
+
+# useConnect for Hooks
+
+```javascript
+import { useConnect } from "react-rest-state";
+
+function myComponent(props) {
+  //if first argumant is a function and runinng when state did update else component will be update
+  useConnect(null, ["name"]);
+  return <Text>{state.name}</Text>;
+}
 ```
